@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="tb" class="test.TestBean">
+		<property name="datas">
+			<set>
+				<value>바나나</value>
+				<value>바나나</value>
+				<value>키위</value>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="gp" class="test.Galaxy" p:watch-ref="gw" p:number="9890" />
+	<bean id="ip" class="test.IPhone" p:watch-ref="aw" p:number="9890" />
+	
+	<bean id="aw" class="test.AppleWatch" />
+	<bean id="gw" class="test.GalaxyWatch" />
+
+</beans>
