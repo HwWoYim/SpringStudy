@@ -38,18 +38,21 @@
 														<th>writer</th>														
 														<th>regdate</th>
 												</thead>
+												<form action="updateBoard.do" method="post">
 												<tbody>
 													<tr>
-														<td>${data.title}</td>
-														<td>${data.content}</td>
-														<td>${data.writer}</td>
+														<td><input type="text" name="title" value="${data.title}"></td>
+														<td><input type="text" name="content" value="${data.content}"></td>
+														<td><input type="text" value="${data.writer}" disabled></td>
 														<td>${data.regdate}</td>
 													</tr>
 												</tbody>
 												<tfoot>
+												<th><input type="submit" class="button" value="글 변경">&nbsp;&nbsp;<a href="deleteBoard.do" class="button primary">글 삭제하기</a></th>
+												</form>
 													<tr>
 														<td colspan="3"></td>
-														<td><a href="main.do">go to main</a></td>
+														<td><a href="main.do">메인으로</a></td>
 													</tr>
 												</tfoot>
 											</table>

@@ -2,38 +2,11 @@ package test;
 
 public class Galaxy implements Phone {
 
-	private Watch watch;
-	private int number;
-	public Galaxy() {
-		
-	}
-	public Galaxy(Watch watch,int number) {
-		this.watch=watch;
-		this.number=number;
-	}
-	
-	
-	
-	/*
 	public void initMethod() {
 		System.out.println("객체를 초기화하는 작업을 처리하는 메서드...");
 	}
 	public void destroyMethod() {
 		System.out.println("객체 메모리를 해제할때 호출하는 메서드...");
-	}
-	*/
-	
-	public Watch getWatch() {
-		return watch;
-	}
-	public void setWatch(Watch watch) {
-		this.watch = watch;
-	}
-	public int getNumber() {
-		return number;
-	}
-	public void setNumber(int number) {
-		this.number = number;
 	}
 	
 	@Override

@@ -31,5 +31,7 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/0607_YIM/resource/JSTL resource/jstl.jar"/>
+	<classpathentry kind="lib" path="C:/0607_YIM/resource/JSTL resource/standard.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

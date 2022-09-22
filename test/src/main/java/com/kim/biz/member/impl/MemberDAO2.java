@@ -20,7 +20,7 @@ public class MemberDAO2 {
 	final String sql_selectOne="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
 	final String sql_selectAll="SELECT * FROM MEMBER";
 	final String sql_insert="INSERT INTO MEMBER VALUES(?,?,?,?)";
-	final String sql_update="UPDATE MEMBER SET MPW=? WHERE MID=?";
+	final String sql_update="UPDATE MEMBER SET MPW=? NAME=? WHERE MID=?";
 	final String sql_delete="DELETE MEMBER WHERE MID=? AND MPW=?";
 	
 	void insertMember(MemberVO vo) {

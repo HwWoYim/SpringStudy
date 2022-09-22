@@ -29,20 +29,20 @@
 										<header class="major">
 											<h2>mypage</h2>
 										</header>
-										<form action="signin.do" method="post">
+										<form action="update.do" method="post">
 										<table class="alt">
 												<tbody>
 													<tr>
 														<td>ID</td>
-														<td colspan="2"><input type="text" name="mid" required></td>
+														<td colspan="2"><input type="text" name="mid" value="${member.mid}" readonly></td>
 													</tr>
 													<tr>
 														<td>PASSWORD</td>
-														<td colspan="2"><input type="password" name="mpw" required></td>
+														<td colspan="2"><input type="password" name="mpw" value="${member.mpw}" required></td>
 													</tr>
 													<tr>
 														<td>NAME</td>
-														<td colspan="2"><input type="text" name="name" required></td>
+														<td colspan="2"><input type="text" name="name" value="${member.name}" required></td>
 													</tr>
 													<tr>
 														<td>ROLE</td>
@@ -52,7 +52,7 @@
 														</select></td>
 													</tr>
 													<tr>
-														<td colspan="3" align="right"><input type="submit" class="button primary" value="UPDATE"> </td>
+														<td colspan="3" align="right"><input type="submit" class="button primary" value="정보변경">&nbsp;&nbsp;<a href="deleteMember.do" class="button primary">회원탈퇴</a></td>
 													</tr>
 												</tbody>
 										</table>

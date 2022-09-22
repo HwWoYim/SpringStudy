@@ -1,7 +1,7 @@
 package test;
 
 public class BeanFactory {
-	public Object getBean(String beanName) { // beanName을 들으면 객체를 반환한다.
+	public Object getBean(String beanName) {
 		if(beanName.equals("galaxy")) {
 			return new Galaxy();
 		}

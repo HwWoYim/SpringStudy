@@ -31,6 +31,37 @@
 											<h2>main</h2>
 										</header>
 										<h2>HELLO , <a href="mypage.do">${member.name}</a> !&nbsp;&nbsp;:D</h2>
+										
+										<!-- 게시글 검색 시작점 -->
+										<form action="main.do" method="post">
+										<table>
+											<thead>
+												<tr>
+													<th><select name="searchCondition">
+														<c:forEach var="v" items="${scMap}">
+															<option value="${v.value}">${v.key}</option>
+														</c:forEach>
+													</select></th>
+													<th><input type="text" name="searchContent" placeholder="검색어를 입력하세요..."></th>
+													<th><input type="submit" class="button" value="search"></th>
+												</tr>
+											</thead>
+										</table>
+										</form>
+										<!-- 게시글 검색 종료점 -->
+										
+										<!-- 게시글 작성 시작점 -->
+										<form action="insertBoard.do" method="post">
+											<table>
+												<th><input type="text" name="title" placeholder="게시글 제목을 입력하세요"></th>
+												<th><input type="hidden" name="writer" placeholder="writer" value="${member.mid}"></th>
+												<th><input type="text" name="content" placeholder="게시글 내용을 입력하세요"></th>
+												<th><input type="submit" class="button" value="작성 완료"></th>
+											</table>
+										</form>
+										<!-- 게시글 작성 종료점 -->
+										
+										<!-- 게시글 목록 시작점 -->	
 										<div class="table-wrapper">
 											<table>
 												<thead>
@@ -38,7 +69,8 @@
 														<th>num</th>
 														<th>title</th>
 														<th>writer</th>
-														<th>cnt</tr>
+														<th>cnt</th>
+													</tr>
 												</thead>
 												<tbody>
 												<c:forEach var="v" items="${datas}">
@@ -58,6 +90,7 @@
 												</tfoot>
 											</table>
 										</div>
+										<!-- 게시글 목록 종료점 -->
 									</div>
 								</div>
 							</section>

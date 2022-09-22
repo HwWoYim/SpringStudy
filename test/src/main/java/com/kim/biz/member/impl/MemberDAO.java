@@ -20,7 +20,7 @@ public class MemberDAO {
 	final String sql_update="UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String sql_delete="DELETE MEMBER WHERE MID=? AND MPW=?";
 	
-	void insertMember(MemberVO vo) {
+	public void insertMember(MemberVO vo) {
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_insert);
@@ -35,7 +35,7 @@ public class MemberDAO {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
 	}
-	void deleteMember(MemberVO vo) {
+	public void deleteMember(MemberVO vo) {
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_delete);
@@ -48,7 +48,7 @@ public class MemberDAO {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
 	}
-	void updateMember(MemberVO vo) {
+	public void updateMember(MemberVO vo) {
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_update);

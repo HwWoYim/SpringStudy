@@ -16,11 +16,13 @@ public class BoardDAO {
 	
 	final String sql_selectOne="SELECT * FROM BOARD WHERE BID=?";
 	final String sql_selectAll="SELECT * FROM BOARD ORDER BY BID DESC";
+	final String sql_findtitle="SELECT * FROM BOARD WHERE TITLE LIKE '%'||?||'%' ORDER BY BID DESC";
+	final String sql_findwriter="SELECT * FROM BOARD WHERE WRITER LIKE '%'||?||'%' ORDER BY BID DESC";
 	final String sql_insert="INSERT INTO BOARD(BID,TITLE,WRITER,CONTENT) VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),?,?,?)";
 	final String sql_update="UPDATE BOARD SET TITLE=?,CONTENT=? WHERE BID=?";
 	final String sql_delete="DELETE BOARD WHERE BID=?";
 	
-	void insertBoard(BoardVO vo) {
+	public void insertBoard(BoardVO vo) {
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_insert);
@@ -34,7 +36,7 @@ public class BoardDAO {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
 	}
-	void updateBoard(BoardVO vo) {
+	public void updateBoard(BoardVO vo) {
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_update);
@@ -48,7 +50,7 @@ public class BoardDAO {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
 	}
-	void deleteBoard(BoardVO vo) {
+	public void deleteBoard(BoardVO vo) {
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_delete);
@@ -87,7 +89,18 @@ public class BoardDAO {
 		List<BoardVO> datas=new ArrayList<BoardVO>();
 		conn=JDBCUtil.connect();
 		try {
-			pstmt=conn.prepareStatement(sql_selectAll);
+			if(vo.getTitle() != null) {
+				pstmt = conn.prepareStatement(sql_findtitle);
+				pstmt.setString(1, vo.getTitle());
+				System.out.println("로그 1");
+			} else if(vo.getWriter() != null) {
+				pstmt = conn.prepareStatement(sql_findwriter);
+				pstmt.setString(1, vo.getWriter());
+				System.out.println("로그 2 ");
+			} else {
+				pstmt=conn.prepareStatement(sql_selectAll);
+				System.out.println("로그 3");
+			}
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				BoardVO data=new BoardVO();
