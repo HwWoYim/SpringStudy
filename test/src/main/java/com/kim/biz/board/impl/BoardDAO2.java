@@ -19,15 +19,17 @@ public class BoardDAO2 {
 	
 	final String sql_selectOne="SELECT * FROM BOARD WHERE BID=?";
 	final String sql_selectAll="SELECT * FROM BOARD ORDER BY BID DESC";
-	final String sql_insert="INSERT INTO BOARD(BID,TITLE,WRITER,CONTENT) VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),?,?,?)";
-	final String sql_update="UPDATE BOARD SET TITLE=?,CONTENT=? WHERE BID=?";
+	final String sql_findtitle="SELECT * FROM BOARD WHERE TITLE LIKE '%'||?||'%' ORDER BY BID DESC";
+	final String sql_findwriter="SELECT * FROM BOARD WHERE WRITER LIKE '%'||?||'%' ORDER BY BID DESC";
+	final String sql_insert="INSERT INTO BOARD(BID,TITLE,WRITER,CONTENT,IMG) VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),?,?,?,?)";
+	final String sql_update="UPDATE BOARD SET TITLE=?,CONTENT=?,IMG=? WHERE BID=?";
 	final String sql_delete="DELETE BOARD WHERE BID=?";
 	
 	public void insertBoard(BoardVO vo) {
-		jdbcTemplate.update(sql_insert,vo.getTitle(),vo.getWriter(),vo.getContent());
+		jdbcTemplate.update(sql_insert,vo.getTitle(),vo.getWriter(),vo.getContent(),vo.getFileName());
 	}
 	public void updateBoard(BoardVO vo) {
-		jdbcTemplate.update(sql_update,vo.getTitle(),vo.getContent(),vo.getBid());
+		jdbcTemplate.update(sql_update,vo.getTitle(),vo.getContent(),vo.getFileName(),vo.getBid());
 	}
 	public void deleteBoard(BoardVO vo) {
 		jdbcTemplate.update(sql_delete,vo.getBid());
@@ -37,7 +39,15 @@ public class BoardDAO2 {
 		return jdbcTemplate.queryForObject(sql_selectOne,args,new BoardRowMapper());
 	}
 	public List<BoardVO> selectAllBoard(BoardVO vo) {
-		return jdbcTemplate.query(sql_selectAll,new BoardRowMapper());
+		if(vo.getTitle() != null) {
+			Object[] args= {vo.getTitle()};
+			return jdbcTemplate.query(sql_findtitle,args,new BoardRowMapper());
+		} else if(vo.getWriter() != null) {
+			Object[] args= {vo.getWriter()};
+			return jdbcTemplate.query(sql_findwriter,args,new BoardRowMapper());
+		} else {
+			return jdbcTemplate.query(sql_selectAll,new BoardRowMapper());
+		}
 	}
 }
 class BoardRowMapper implements RowMapper<BoardVO>{
@@ -50,6 +60,7 @@ class BoardRowMapper implements RowMapper<BoardVO>{
 		data.setTitle(rs.getString("TITLE"));
 		data.setWriter(rs.getString("WRITER"));
 		data.setCnt(rs.getInt("CNT"));
+		data.setFileName(rs.getString("IMG"));
 		data.setRegdate(rs.getString("REGDATE"));
 		return data;
 	}

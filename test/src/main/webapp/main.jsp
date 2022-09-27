@@ -51,13 +51,15 @@
 										<!-- 게시글 검색 종료점 -->
 										
 										<!-- 게시글 작성 시작점 -->
-										<form action="insertBoard.do" method="post">
+										<form action="insertBoard.do" method="post" enctype="multipart/form-data">
 											<table>
 												<th><input type="text" name="title" placeholder="게시글 제목을 입력하세요"></th>
-												<th><input type="hidden" name="writer" placeholder="writer" value="${member.mid}"></th>
-												<th><input type="text" name="content" placeholder="게시글 내용을 입력하세요"></th>
-												<th><input type="submit" class="button" value="작성 완료"></th>
+												<td><input type="hidden" name="writer" placeholder="writer" value="${member.mid}"></td>
+												<td><input type="text" name="content" placeholder="게시글 내용을 입력하세요"></th>
+												<td><input type="file" name="uploadFile"></td>
+												<td><input type="submit" class="button" value="작성 완료"></td>
 											</table>
+											
 										</form>
 										<!-- 게시글 작성 종료점 -->
 										

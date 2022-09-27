@@ -3783,3 +3783,8 @@ input, select, textarea {
 			}
 
 		}
+		
+		#writeForm{
+		display : inline-block;
+		float : right;
+		}

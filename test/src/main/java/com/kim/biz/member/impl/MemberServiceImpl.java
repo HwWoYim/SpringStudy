@@ -11,8 +11,8 @@ import com.kim.biz.member.MemberVO;
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
-	@Autowired // MemberDAO Å¸ÀÔÀÇ °´Ã¼°¡ ¸Þ¸ð¸®¿¡ ÀÖ¾î¾ßÁö¸¸ DI(ÀÇÁ¸¼º ÁÖÀÔ) °¡´ÉÇÔ!
-	private MemberDAO2 memberDAO; // ÇÙ½É·ÎÁ÷À» ¼öÇàÇÒ °´Ã¼
+	@Autowired // MemberDAO Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Þ¸ð¸®¿ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DI(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
+	private MemberDAO2 memberDAO; // ï¿½Ù½É·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
 	
 	@Override
 	public void insertMember(MemberVO vo) {
@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO selectOneMember(MemberVO vo) {
 		if(vo.getMid().equals("timo")) {
-			throw new IllegalArgumentException("[½ÇÇà½Ã¿¹¿Ü]");
+			throw new IllegalArgumentException("[í‹°ëª¨ëŠ” ì œì™¸]");
 		}
 		return memberDAO.selectOneMember(vo);
 	}

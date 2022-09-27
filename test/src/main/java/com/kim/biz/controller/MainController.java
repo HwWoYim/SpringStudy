@@ -1,60 +1,68 @@
-package com.kim.biz.controller;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-
-import com.kim.biz.board.BoardVO;
-import com.kim.biz.board.impl.BoardDAO;
-import com.kim.biz.member.MemberVO;
-import com.kim.biz.member.impl.MemberDAO;
-
-@Controller
-@SessionAttributes("userId")
-public class MainController {
+//package com.kim.biz.controller;
+//
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.SessionAttributes;
+//
+//import com.kim.biz.board.BoardService;
+//import com.kim.biz.board.BoardVO;
+//import com.kim.biz.board.impl.BoardDAO;
+//import com.kim.biz.member.MemberService;
+//import com.kim.biz.member.MemberVO;
+//import com.kim.biz.member.impl.MemberDAO;
+//
+//@Controller
+//@SessionAttributes("userId")
+//public class MainController {
 	
-	@ModelAttribute("scMap")
-	public Map<String, String> searchConditionMap(){
-		Map<String, String> scMap = new HashMap<String, String>();
-		scMap.put("Á¦¸ñ", "TITLE");
-		scMap.put("ÀÛ¼ºÀÚ", "WRITER");
-		return scMap;
-	}
+//	@Autowired
+//	private MemberService memberService;
+//	private BoardService boardService;
 	
-	@RequestMapping(value="/main.do")
-	public String main(@RequestParam(value="searchCondition", defaultValue="TITLE", required=false) String searchCondition, @RequestParam(value="searchContent", defaultValue="", required=false) String searchContent, MemberVO mVO, MemberDAO mDAO, BoardVO bVO, BoardDAO bDAO, Model model) {
-		System.out.println("°Ë»öÁ¶°Ç : " + searchCondition);
-		System.out.println("°Ë»ö¾î : " + searchContent);
-		if(searchCondition != null) {
-			if(searchCondition.equals("TITLE")) {
-				bVO.setTitle(searchContent);
-				System.out.println("°Ë»ö·Î±× : " + bVO);
-			} else if(searchCondition.equals("WRITER")) {	
-				bVO.setWriter(searchContent);
-			}
-		}
-		List<BoardVO> datas=bDAO.selectAllBoard(bVO); // 1°³ ÀÌ»óÀÏ ¼ö ÀÖ±â¶§¹®¿¡ ¹è¿­¸®½ºÆ®¿¡ ÀúÀå
-		mVO=mDAO.selectOneMember(mVO);	
-		
-		model.addAttribute("datas", datas); // ¿ŞÂÊ "datas"¶ó´Â ÀÌ¸§À¸·Î datas¸¦ Àü´ŞÇÑ´Ù.
-		model.addAttribute("member", mVO);
-		return "main.jsp";
-	}
+//	@ModelAttribute("scMap")
+//	public Map<String, String> searchConditionMap(){
+//		Map<String, String> scMap = new HashMap<String, String>();
+//		scMap.put("ì œëª©", "TITLE");
+//		scMap.put("ì‘ì„±ì", "WRITER");
+//		return scMap;
+//	}
+//	
+//	@RequestMapping(value="/main.do")
+//	public String main(@RequestParam(value="searchCondition", defaultValue="TITLE", required=false) String searchCondition, @RequestParam(value="searchContent", defaultValue="", required=false) String searchContent, MemberVO mVO, MemberDAO mDAO, BoardVO bVO, BoardDAO bDAO, Model model) {
+//		System.out.println("ê²€ìƒ‰ì¡°ê±´ ë¡œê·¸ : " + searchCondition);
+//		System.out.println("ê²€ìƒ‰ì–´ ë¡œê·¸ : " + searchContent);
+//		if(searchCondition != null) {
+//			if(searchCondition.equals("TITLE")) {
+//				bVO.setTitle(searchContent);
+//			} else if(searchCondition.equals("WRITER")) {	
+//				bVO.setWriter(searchContent);
+//			}
+//			System.out.println("MainController_41_bVOë¡œê·¸ : " + bVO);
+//		}
+//		List<BoardVO> datas=bDAO.selectAllBoard(bVO); // 1ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö±â¶§ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		mVO=mDAO.selectOneMember(mVO);	
+//		
+//		model.addAttribute("datas", datas); // ï¿½ï¿½ï¿½ï¿½ "datas"ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ datasï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+//		System.out.println("MainController_47_mVOï¿½Î±ï¿½ : " + mVO);
+//		model.addAttribute("member", mVO);
+//		return "main.jsp";
+//	}
 	//2022.09.22
 //	@RequestMapping(value="/main.do")
 //	public ModelAndView selectAllBoard(MemberVO mVO, MemberDAO mDAO, BoardVO bVO, BoardDAO bDAO, ModelAndView mav, HttpSession session) {
-//		List<BoardVO> datas=bDAO.selectAllBoard(bVO); // 1°³ ÀÌ»óÀÏ ¼ö ÀÖ±â¶§¹®¿¡ ¹è¿­¸®½ºÆ®¿¡ ÀúÀå
+//		List<BoardVO> datas=bDAO.selectAllBoard(bVO); // 1ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö±â¶§ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //		mVO = (MemberVO)session.getAttribute("userId");
-//		System.out.println("MainController·Î±× 1 : " + datas);
+//		System.out.println("MainControllerï¿½Î±ï¿½ 1 : " + datas);
 //		
-//		mav.addObject("datas", datas); // ¿ŞÂÊ "datas"¶ó´Â ÀÌ¸§À¸·Î datas¸¦ Àü´ŞÇÑ´Ù.
+//		mav.addObject("datas", datas); // ï¿½ï¿½ï¿½ï¿½ "datas"ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ datasï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 //		mav.setViewName("main.jsp");
 //		return mav;
 //	}
@@ -74,4 +82,4 @@ public class MainController {
 	}
 	*/
 	
-}
+//}

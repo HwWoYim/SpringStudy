@@ -7,9 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.kim.biz.common.JDBCUtil;
 import com.kim.biz.member.MemberVO;
 
+//@Repository("memberDAO")
 public class MemberDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
@@ -17,7 +20,7 @@ public class MemberDAO {
 	final String sql_selectOne="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
 	final String sql_selectAll="SELECT * FROM MEMBER";
 	final String sql_insert="INSERT INTO MEMBER VALUES(?,?,?,?)";
-	final String sql_update="UPDATE MEMBER SET MPW=? WHERE MID=?";
+	final String sql_update="UPDATE MEMBER SET MPW=?,NAME=? WHERE MID=?";
 	final String sql_delete="DELETE MEMBER WHERE MID=? AND MPW=?";
 	
 	public void insertMember(MemberVO vo) {
@@ -53,7 +56,8 @@ public class MemberDAO {
 		try {
 			pstmt=conn.prepareStatement(sql_update);
 			pstmt.setString(1, vo.getMpw());
-			pstmt.setString(2, vo.getMid());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getMid());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +66,7 @@ public class MemberDAO {
 		}
 	}
 	public MemberVO selectOneMember(MemberVO vo) {
-		System.out.println("½ÃÀÛ!");
+		System.out.println("selectOneMember_DAO_ì§„ìž…");
 		conn=JDBCUtil.connect();
 		try {
 			pstmt=conn.prepareStatement(sql_selectOne);
@@ -75,7 +79,7 @@ public class MemberDAO {
 				data.setMpw(rs.getString("MPW"));
 				data.setName(rs.getString("NAME"));
 				data.setRole(rs.getString("ROLE"));
-				System.out.println("³¡! - 1");
+				System.out.println("selectOneMember ë¡œê·¸ - 1");
 				return data;
 			}
 		} catch (SQLException e) {
@@ -83,7 +87,7 @@ public class MemberDAO {
 		} finally {
 			JDBCUtil.disconnect(pstmt, conn);
 		}
-		System.out.println("³¡! - 2");
+		System.out.println("MDAO ë¡œê·¸ - 2");
 		return null;
 	}
 	List<MemberVO> selectAllMember(MemberVO vo){

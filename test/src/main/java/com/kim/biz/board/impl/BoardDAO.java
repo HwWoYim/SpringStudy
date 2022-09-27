@@ -92,14 +92,14 @@ public class BoardDAO {
 			if(vo.getTitle() != null) {
 				pstmt = conn.prepareStatement(sql_findtitle);
 				pstmt.setString(1, vo.getTitle());
-				System.out.println("�α� 1");
+				System.out.println("전체출력 로그1");
 			} else if(vo.getWriter() != null) {
 				pstmt = conn.prepareStatement(sql_findwriter);
 				pstmt.setString(1, vo.getWriter());
-				System.out.println("�α� 2 ");
+				System.out.println("전체출력 로그2");
 			} else {
 				pstmt=conn.prepareStatement(sql_selectAll);
-				System.out.println("�α� 3");
+				System.out.println("전체출력 로그3");
 			}
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {

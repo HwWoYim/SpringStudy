@@ -1,12 +1,16 @@
 package com.kim.biz.board;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
-	private int bid;
-	private String title;
-	private String writer;
-	private String content;
+	private int bid; // 글 고유 번호
+	private String title; // 제목
+	private String writer; // 작성자
+	private String content; // 내용
 	private int cnt;
-	private String regdate;
+	private String regdate; // 글이 데이터베이스 들어온 시간(작성된 시간)
+	private MultipartFile uploadFile; // springframework에서 제공하는 MultipartFile
+	private String fileName; // 저장된 파일이름
 	public int getBid() {
 		return bid;
 	}
@@ -43,9 +47,25 @@ public class BoardVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [bid=" + bid + ", title=" + title + ", writer=" + writer + ", content=" + content + ", cnt="
-				+ cnt + ", regdate=" + regdate + "]";
+				+ cnt + ", regdate=" + regdate + ", uploadFile=" + uploadFile + ", fileName=" + fileName + "]";
 	}
+	
+	
 }

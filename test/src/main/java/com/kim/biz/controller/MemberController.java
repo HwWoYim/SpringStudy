@@ -1,8 +1,8 @@
 package com.kim.biz.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,54 +10,78 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kim.biz.member.MemberService;
 import com.kim.biz.member.MemberVO;
 import com.kim.biz.member.impl.MemberDAO;
 
 @Controller
 @SessionAttributes("member")
 public class MemberController {
-	// ·Î±×ÀÎ È­¸éÀ» º¸¿©ÁÖ´Â ·ÎÁ÷
+	
+	@Autowired
+	private MemberService memberService;
+	
+	// ë¡œê·¸ì¸
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String index() {
 		return "login.jsp";
 	}
 
-	// ·Î±×ÀÎ ÇØÁÖ´Â ·ÎÁ÷
+	// POSTë°©ì‹ ë¡œê·¸ì¸
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String selectOneMember(MemberVO mVO, MemberDAO mDAO, Model model, HttpSession session) {
-		System.out.println("post¹æ½ÄÀÇ memberC Åë°ú");
-		mVO = mDAO.selectOneMember(mVO);
+	public String selectOneMember(MemberVO mVO, Model model, HttpSession session) {
+		System.out.println("post ë°©ì‹ memberC ë¡œê·¸");
+		mVO = memberService.selectOneMember(mVO);
 		session.setAttribute("userId", mVO);
-		System.out.println("MemberController_login_31_login : " + mVO); // ·Î±×
-		if (mVO == null) { // ·Î±×ÀÎ ½ÇÆĞ
+		System.out.println("MemberController_login_31_login : " + mVO); // ï¿½Î±ï¿½
+		if (mVO == null) { // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return "main.jsp";
-		} else { // ·Î±×ÀÎ ¼º°ø	
-			System.out.println("MemberController_login_35_login : " + mVO); // ·Î±×
+		} else { // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½	
+			System.out.println("MemberController_login_35_login : " + mVO); // ï¿½Î±ï¿½
 			session.setAttribute("member", mVO);	
 			return "main.do";
 		}
 	}
 
-	// ·Î±×¾Æ¿ô
+	// ë¡œê·¸ì¸
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:login.do";
 	}
 
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	@RequestMapping(value = "/signin.do")
-	public String signin(MemberVO mVO, MemberDAO mDAO) {
-		mDAO.insertMember(mVO);
+	public String signin(MemberVO mVO) {
+		memberService.insertMember(mVO);
 		return "login.jsp";
 	}
 
-	// È¸¿øÅ»Åğ
+	// È¸ï¿½ï¿½Å»ï¿½ï¿½
 	@RequestMapping(value = "/deleteMember.do")
-	public String deleteMember(@ModelAttribute("member") MemberVO mVO, MemberDAO mDAO, HttpSession session) {
+	public String deleteMember(@ModelAttribute("member") MemberVO mVO, HttpSession session) {
 		// mVO = (MemberVO)session.getAttribute("userId");
-		mDAO.deleteMember(mVO);
+		memberService.deleteMember(mVO);
 		return "login.do";
+	}
+	
+	@RequestMapping(value="/mypage.do", method = RequestMethod.GET)
+	public String mypage(@ModelAttribute("member")MemberVO mVO, Model model, HttpSession session) {
+//		mVO = (MemberVO)session.getAttribute("userId");
+		mVO = memberService.selectOneMember(mVO);
+
+//		mav.addObject("member", mVO);
+//		mav.setViewName("mypage.jsp");
+		System.out.println("Mypage_27_mVOë¡œê·¸ : " + mVO);
+//		model.addAttribute("member", mVO);
+		return "mypage.jsp";
+	}
+
+	@RequestMapping(value="/update.do", method = RequestMethod.POST)
+	public String update(@ModelAttribute("member")MemberVO mVO, Model model) {
+		memberService.updateMember(mVO);
+
+		return "main.do";
 	}
 
 }

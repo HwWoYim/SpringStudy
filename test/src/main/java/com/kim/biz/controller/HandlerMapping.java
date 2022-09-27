@@ -1,10 +1,10 @@
-package com.kim.biz.controller;
-
-public class HandlerMapping { // ½Ì±ÛÅæ ÆĞÅÏÀÌ À¯ÁöµÊ
+//package com.kim.biz.controller;
+//
+//public class HandlerMapping { // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/*
-	// input: ¾î¶² ¿äÃ»¿¡ ´ëÇØ == String
-	// output: ¹«½¼ Controller °´Ã¼¸¦ Á¦°øÇØ¾ßÇÏ´ÂÁö == Controller
-	private Map<String,Controller> mappings; // ÀÇÁ¸°ü°è -> DI => »ı¼ºÀÚ ÁÖÀÔ
+	// input: ï¿½î¶² ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ == String
+	// output: ï¿½ï¿½ï¿½ï¿½ Controller ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ == Controller
+	private Map<String,Controller> mappings; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> DI => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public HandlerMapping() {
 		mappings=new HashMap<String,Controller>();
@@ -17,4 +17,4 @@ public class HandlerMapping { // ½Ì±ÛÅæ ÆĞÅÏÀÌ À¯ÁöµÊ
 		return mappings.get(command);
 	}
 	*/
-}
+//}
