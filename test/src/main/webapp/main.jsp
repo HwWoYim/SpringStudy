@@ -54,10 +54,13 @@
 										<form action="insertBoard.do" method="post" enctype="multipart/form-data">
 											<table>
 												<th><input type="text" name="title" placeholder="게시글 제목을 입력하세요"></th>
-												<td><input type="hidden" name="writer" placeholder="writer" value="${member.mid}"></td>
-												<td><input type="text" name="content" placeholder="게시글 내용을 입력하세요"></th>
-												<td><input type="file" name="uploadFile"></td>
-												<td><input type="submit" class="button" value="작성 완료"></td>
+												<th><input type="hidden" name="writer" placeholder="writer" value="${member.mid}"></th>
+												<th><input type="text" name="content" placeholder="게시글 내용을 입력하세요"></th>
+												<tr>
+													<td colspan="2"><input type="file" name="uploadFile" onchange="loadFile(this);"><span class="image"><img src="images/pic01.jpg" alt="preview" id="preview" /></span></td>
+													<td align="right"><input align="right" type="submit" class="button" value="작성 완료"></td>
+												</tr>
+												
 											</table>
 											
 										</form>
@@ -130,7 +133,24 @@
 					</footer>
 
 			</div>
-
+	<script type="text/javascript">
+	function loadFile(input){
+		console.log('로그1');
+		if(input.files && input.files[0]){
+			console.log('로그2');
+			var fr=new FileReader();
+			fr.onload=function(event){
+				console.log('로그3');
+				document.getElementById('preview').src=event.target.result;
+			};
+			fr.readAsDataURL(input.files[0]);
+		}
+		else{
+			console.log('로그4');
+			document.getElementById('preview').src="";
+		}
+	}
+</script>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>

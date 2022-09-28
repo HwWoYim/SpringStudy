@@ -51,11 +51,13 @@
 														
 													</tr>
 												</tbody>
-												<th><input type="file" name="uploadFile"></th>
-												<th><input type="submit" class="button" value="글 변경">&nbsp;&nbsp;<a href="deleteBoard.do" class="button primary">글 삭제하기</a></th>
+												<th><input type="file" name="uploadFile"><span class="image"><img src="images/${data.fileName}" alt="preview" id="preview" /></span></th>
+												<th colspan="4"><input type="submit" class="button" value="글 변경">&nbsp;&nbsp;<a href="deleteBoard.do" class="button primary">글 삭제하기</a></th>
 												</form>
 												<tfoot>
+												
 													<tr>
+													
 														<td colspan="3"></td>
 														<td><a href="main.do">메인으로!</a></td>
 													</tr>
@@ -67,6 +69,8 @@
 							</section>
 
 					</div>
+					
+
 
 				<!-- Footer -->
 					<footer id="footer">
@@ -99,7 +103,23 @@
 					</footer>
 
 			</div>
-
+	<script type="text/javascript">
+		function loadFile(input){
+			console.log('로그1');
+			if(input.files && input.files[0]){
+				console.log('로그2');
+				var fr=new FilReader();
+				fr.onload=function(event){
+					console.log('로그3');
+					document.getElementById('preview').src=event.target.result;
+				};
+				fr.readAsDataURL(input.files[0]);
+			} else{
+				console.log('로그4');
+				document.getElementById('preview').src="";
+			}
+		}
+	</script>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
