@@ -15,7 +15,7 @@ import com.kim.biz.member.MemberVO;
 public class MemberDAO2 {
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate; 
 	
 	final String sql_selectOne="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
 	final String sql_selectAll="SELECT * FROM MEMBER";
@@ -35,6 +35,10 @@ public class MemberDAO2 {
 	public MemberVO selectOneMember(MemberVO vo) {
 		Object[] args= {vo.getMid(),vo.getMpw()};
 		return jdbcTemplate.queryForObject(sql_selectOne,args,new MemberRowMapper());
+		// queryForObject() 메소드는 무조건 1개의 output을 필요로 한다.
+		// 0, N개의 output이 발생하면 에러!!!
+		// 해결방안 1) try-catch
+		// 해결방안 2) query() 메서드를 대신 활용
 	}
 	public List<MemberVO> selectAllMember(MemberVO vo) {
 		return jdbcTemplate.query(sql_selectAll,new MemberRowMapper());
