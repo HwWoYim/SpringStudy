@@ -51,10 +51,21 @@ public class MemberController {
 	}
 
 	// 회원가입
-	@RequestMapping(value = "/signin.do")
+//	@RequestMapping(value = "/signin.do")
+//	public String signin(MemberVO mVO) {
+//		memberService.insertMember(mVO);
+//		return "login.jsp";
+//	}
+	// 로그인 페이지에서 회원가입 이동할 때
+	@RequestMapping(value="/signin.do", method=RequestMethod.GET)
+	public String signin() {
+	   return "signin.jsp";
+	}
+	// 회원가입 페이지에서 회원가입할 때
+	@RequestMapping(value="/signin.do", method=RequestMethod.POST)
 	public String signin(MemberVO mVO) {
-		memberService.insertMember(mVO);
-		return "login.jsp";
+	   memberService.insertMember(mVO);
+	   return "redirect:login.do";
 	}
 
 	// ȸ��Ż��

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE HTML>
 <!--
 	Stellar by HTML5 UP
@@ -22,8 +23,8 @@
 				<!-- Header -->
 					<header id="header" class="alt">
 						<span class="logo"><img src="images/logo.svg" alt="" /></span>
-						<h1>Spring Project</h1>
-						<p>spring project by  <a href="https://blog.naver.com/coding_helper">@coding_helper</a></p>
+						<h1><spring:message code="message.header.h1" /></h1>
+						<p><spring:message code="message.header.p" />  <a href="https://blog.naver.com/coding_helper">@coding_helper</a></p>
 					</header>
 
 				<!-- Nav -->
@@ -31,8 +32,8 @@
 						<ul>
 							<li><a href="#intro" class="active">Introduction</a></li>
 							<li><a href="#first">First Section</a></li>
-							<li><a href="#second">Second Section</a></li>
-							<li><a href="#cta">Get Started</a></li>
+							<li><a href="login.do?lang=ko">한국어</a></li>
+							<li><a href="login.do?lang=en">ENGLISH</a></li>
 						</ul>
 					</nav>
 
@@ -44,21 +45,21 @@
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>login</h2>
+											<h2><spring:message code="message.introduction.h2" /></h2>
 										</header>
 										<form action="login.do" method="post">
 										<table class="alt">
 												<tbody>
 													<tr>
-														<td>ID</td>
+														<td><spring:message code="message.introduction.id" /></td>
 														<td colspan="2"><input type="text" name="mid" required></td>
 													</tr>
 													<tr>
-														<td>PASSWORD</td>
+														<td><spring:message code="message.introduction.password" /></td>
 														<td colspan="2"><input type="password" name="mpw" required></td>
 													</tr>
 													<tr>
-														<td colspan="3" align="right"><input type="submit" class="button primary" value="LOGIN"> <a href="signin.jsp" class="button primary">SIGN IN</a> </td>
+														<td colspan="3" align="right"><input type="submit" class="button primary" value="<spring:message code="message.introduction.login" />"> <a href="signin.do" class="button primary"><spring:message code="message.introduction.sign" /></a> </td>
 													</tr>
 												</tbody>
 										</table>
