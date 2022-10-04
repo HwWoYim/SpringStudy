@@ -9,6 +9,8 @@ public class BoardVO {
 	private String content; // 내용
 	private int cnt;
 	private String regdate; // 글이 데이터베이스 들어온 시간(작성된 시간)
+	private String searchCondition;
+	private String searchContent;
 	private MultipartFile uploadFile; // springframework에서 제공하는 MultipartFile
 	private String fileName; // 저장된 파일이름
 	public int getBid() {
@@ -47,7 +49,18 @@ public class BoardVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchContent() {
+		return searchContent;
+	}
+	public void setSearchContent(String searchContent) {
+		this.searchContent = searchContent;
+	}
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
@@ -64,8 +77,10 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [bid=" + bid + ", title=" + title + ", writer=" + writer + ", content=" + content + ", cnt="
-				+ cnt + ", regdate=" + regdate + ", uploadFile=" + uploadFile + ", fileName=" + fileName + "]";
+				+ cnt + ", regdate=" + regdate + ", searchCondition=" + searchCondition + ", searchContent="
+				+ searchContent + ", uploadFile=" + uploadFile + ", fileName=" + fileName + "]";
 	}
+	
 	
 	
 }

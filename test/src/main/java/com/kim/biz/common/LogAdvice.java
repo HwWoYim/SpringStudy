@@ -17,10 +17,10 @@ public class LogAdvice {
 		
 		System.out.println("수행중인 핵심메서드명: "+methodName);
 		System.out.println("사용하는 인자");
-		System.out.println("=====");
+		System.out.println("========================================");
 		for(Object v:args) {
 			System.out.println(v);
 		}
-		System.out.println("=====");
+		System.out.println("========================================");
 	}
 }

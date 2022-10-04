@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardDAO">
+
+	<resultMap type="board" id="boardResult">
+		<id property="bid" column="BID"/>
+		<result property="title" column="TITLE"/>
+		<result property="writer" column="WRITER"/>
+		<result property="content" column="board"/>
+	</resultMap>
+	<!-- 글 추가 -->
+	<insert id="insertBoard">
+		INSERT INTO BOARD(BID, TITLE, WRITER,CONTENT) VALUES((SELECT NVL(MAX(BID), 0)+1 FROM BOARD),#{title},#{writer},#{content})
+	</insert>
+	<!-- 글 변경 -->
+	<update id="updateBoard">
+		UPDATE BOARD SET TITLE=#{title}, WRITER=#{writer} WHERE BID=#{bid}
+	</update>
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard">
+		<![CDATA[
+		 	DELETE BOARD WHERE BID=#{bid}
+		]]>
+		DELETE BOARD WHERE BID=#{bid}
+	</delete>
+	<!-- 특정 글 보기 -->
+	<select id="selectOneBoard" resultType="board">
+      SELECT * FROM BOARD WHERE BID=#{bid}
+   </select>
+   <!-- 전체 글 보기 -->
+   <select id="selectAllBoard" resultType="board">
+      SELECT * FROM BOARD WHERE TITLE LIKE '%'||#{searchContent}||'%' ORDER BY BID DESC
+   </select>
+
+</mapper>

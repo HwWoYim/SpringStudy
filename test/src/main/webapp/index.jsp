@@ -5,4 +5,5 @@
 	// .jsp를 하면 안.된.다
 	
 	response.sendRedirect("login.do");
+
 %>
