@@ -26,8 +26,6 @@
 		<!-- Nav -->
 		<nav id="nav">
 			<ul>
-				<li><a href="#intro" class="active">Introduction</a></li>
-				<li><a href="#first">First Section</a></li>
 				<li><a href="main.do?lang=ko">한국어</a></li>
 				<li><a href="main.do?lang=en">ENGLISH</a></li>
 			</ul>
@@ -114,8 +112,8 @@
 								<tfoot>
 									<tr>
 										<td colspan="3"></td>
-										<td><a href="logout.do"><spring:message
-													code="main.tfoot.logout" /></a></td>
+										<td><a href="logout.do"><spring:message	code="main.tfoot.logout" /></a><a href="main.do">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="board.introduction.gomain" /></a></td>
+										
 									</tr>
 								</tfoot>
 							</table>

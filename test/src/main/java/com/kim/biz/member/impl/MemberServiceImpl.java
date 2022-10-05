@@ -12,7 +12,7 @@ import com.kim.biz.member.MemberVO;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired // MemberDAO Ÿ���� ��ü�� �޸𸮿� �־������ DI(������ ����) ������!
-	private MemberDAO2 memberDAO; // �ٽɷ����� ������ ��ü
+	private MemberDAO3 memberDAO; // �ٽɷ����� ������ ��ü
 	
 	@Override
 	public void insertMember(MemberVO vo) {

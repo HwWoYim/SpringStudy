@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kim.biz.board.BoardVO;
 
-@Repository("boardDAO")
+//@Repository("boardDAO")
 public class BoardDAO2 {
 
 	@Autowired
@@ -64,5 +64,5 @@ class BoardRowMapper implements RowMapper<BoardVO>{
 		data.setRegdate(rs.getString("REGDATE"));
 		return data;
 	}
-	
+
 }

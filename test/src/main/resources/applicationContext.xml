@@ -24,7 +24,13 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	
-	
+	<!-- Mybatis를 Spring에 연동 -->
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="configLocation" value="classpath:sql-map-config.xml" />
+      <property name="dataSource" ref="dataSource" />
+   </bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"/>
+	</bean>
 	
 </beans>

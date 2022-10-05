@@ -6,30 +6,42 @@
 		<id property="bid" column="BID"/>
 		<result property="title" column="TITLE"/>
 		<result property="writer" column="WRITER"/>
-		<result property="content" column="board"/>
+		<result property="content" column="CONTENT"/>
+		<result property="fileName" column="IMG"/>
 	</resultMap>
 	<!-- 글 추가 -->
 	<insert id="insertBoard">
-		INSERT INTO BOARD(BID, TITLE, WRITER,CONTENT) VALUES((SELECT NVL(MAX(BID), 0)+1 FROM BOARD),#{title},#{writer},#{content})
+		INSERT INTO BOARD(BID, TITLE, WRITER, CONTENT, IMG) VALUES((SELECT NVL(MAX(BID), 0)+1 FROM BOARD),#{title},#{writer},#{content},#{fileName})
 	</insert>
 	<!-- 글 변경 -->
 	<update id="updateBoard">
-		UPDATE BOARD SET TITLE=#{title}, WRITER=#{writer} WHERE BID=#{bid}
+		UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content}, IMG=#{fileName} WHERE BID=#{bid}
 	</update>
 	<!-- 글 삭제 -->
 	<delete id="deleteBoard">
 		<![CDATA[
 		 	DELETE BOARD WHERE BID=#{bid}
 		]]>
-		DELETE BOARD WHERE BID=#{bid}
+		<!-- DELETE BOARD WHERE BID=#{bid} -->
 	</delete>
 	<!-- 특정 글 보기 -->
-	<select id="selectOneBoard" resultType="board">
+	<select id="selectOneBoard" resultMap ="boardResult">
       SELECT * FROM BOARD WHERE BID=#{bid}
    </select>
    <!-- 전체 글 보기 -->
-   <select id="selectAllBoard" resultType="board">
-      SELECT * FROM BOARD WHERE TITLE LIKE '%'||#{searchContent}||'%' ORDER BY BID DESC
+   <select id="selectAllBoard" resultMap ="boardResult">
+      SELECT * FROM BOARD
+      WHERE 1=1
+      <if test="searchCondition == 'TITLE'">
+      	AND TITLE LIKE '%'||#{searchContent}||'%'
+      </if>
+      <if test="searchCondition == 'WRITER'">
+      	AND WRITER LIKE '%'||#{searchContent}||'%'
+      </if>
+      <if test="searchCondition == 'CONTENT'">
+      	AND CONTENT LIKE '%'||#{searchContent}||'%'
+      </if>
+      ORDER BY BID DESC
    </select>
 
 </mapper>

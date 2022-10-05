@@ -12,7 +12,7 @@ import com.kim.biz.board.BoardVO;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	private BoardDAO2 boardDAO;
+	private BoardDAO3 boardDAO;
 	
 	@Override
 	public void insertBoard(BoardVO vo) {

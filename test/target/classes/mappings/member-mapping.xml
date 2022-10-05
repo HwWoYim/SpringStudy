@@ -2,39 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberDAO">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<!-- 회원가입 -->
+	<insert id="insertMember">
+		INSERT INTO MEMBER(MID, MPW, NAME, ROLE) VALUES(#{mid}, #{mpw}, #{name}, #{role})
+	</insert>
+	<!-- 회원정보변경 -->
+	<update id="updateMember">
+		UPDATE MEMBER SET MPW=#{mpw}, NAME=#{name} WHERE MID=#{mid}
+	</update>
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember">
+		DELETE MEMBER WHERE MID=#{mid} AND MPW=#{mpw}
+	</delete>
+	<!-- 로그인 -->
+	<select id="selectOneMember" resultType="member">
+		SELECT * FROM MEMBER WHERE MID=#{mid} AND MPW=#{mpw}
+	</select>
+	<!-- 회원목록 -->
+	<select id="selectAllMember" resultType="member">
+		SELECT * FROM MEMBER
+	</select>
 
 
 </mapper>

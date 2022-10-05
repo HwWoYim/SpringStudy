@@ -30,14 +30,14 @@ public class MemberController {
 	// POST방식 로그인
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String selectOneMember(MemberVO mVO, Model model, HttpSession session) {
-		System.out.println("post 방식 memberC 로그");
+//		System.out.println("post 방식 memberC 로그");
 		mVO = memberService.selectOneMember(mVO);
 		session.setAttribute("userId", mVO);
-		System.out.println("MemberController_login_31_login : " + mVO); // �α�
+//		System.out.println("MemberController_login_31_login : " + mVO); // �α�
 		if (mVO == null) { // �α��� ����
 			return "main.jsp";
 		} else { // �α��� ����	
-			System.out.println("MemberController_login_35_login : " + mVO); // �α�
+//			System.out.println("MemberController_login_35_login : " + mVO); // �α�
 			session.setAttribute("member", mVO);	
 			return "main.do";
 		}
@@ -83,7 +83,7 @@ public class MemberController {
 
 //		mav.addObject("member", mVO);
 //		mav.setViewName("mypage.jsp");
-		System.out.println("Mypage_27_mVO로그 : " + mVO);
+//		System.out.println("Mypage_27_mVO로그 : " + mVO);
 //		model.addAttribute("member", mVO);
 		return "mypage.jsp";
 	}
