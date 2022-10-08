@@ -15,7 +15,7 @@ public class SqlSessionBean {
 	static {
 		try {
 			if(sessionFactory==null) {
-				// 이곳읜 작업은 스트림을 사용한다.
+				// 이곳의 작업은 스트림을 사용한다.
 				// 외부요인으로 인한 에러가 자주 발생하기 때문에 예외처리 하였다.
 				
 				// builder를 이용해서 ssf객체를 생성할 예정

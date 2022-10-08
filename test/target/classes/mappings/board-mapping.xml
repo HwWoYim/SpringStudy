@@ -4,6 +4,7 @@
 
 	<resultMap type="board" id="boardResult">
 		<id property="bid" column="BID"/>
+		<result property="cnt" column="CNT"/>
 		<result property="title" column="TITLE"/>
 		<result property="writer" column="WRITER"/>
 		<result property="content" column="CONTENT"/>
@@ -16,6 +17,10 @@
 	<!-- 글 변경 -->
 	<update id="updateBoard">
 		UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content}, IMG=#{fileName} WHERE BID=#{bid}
+	</update>
+	<!-- 글 선택시 조회수 1씩 증가 해주는 SQL문 -->
+	<update id="cntUpdate">
+		UPDATE BOARD SET CNT=CNT+1 WHERE BID=#{bid}
 	</update>
 	<!-- 글 삭제 -->
 	<delete id="deleteBoard">

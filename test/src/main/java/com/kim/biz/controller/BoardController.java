@@ -95,6 +95,8 @@ public class BoardController{
 				bVO.setTitle(searchContent);
 			} else if(searchCondition.equals("WRITER")) {	
 				bVO.setWriter(searchContent);
+			}else if(searchCondition.equals("CONTENT")) {	
+				bVO.setContent(searchContent);
 			}
 //			System.out.println("MainController_41_bVO로그 : " + bVO);
 		}

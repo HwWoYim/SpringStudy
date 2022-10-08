@@ -30,7 +30,7 @@
          </dataSource>
       </environment>
    </environments> -->
-
+ 
     <mappers>
        <mapper resource="mappings/board-mapping.xml" />
        <mapper resource="mappings/member-mapping.xml" />

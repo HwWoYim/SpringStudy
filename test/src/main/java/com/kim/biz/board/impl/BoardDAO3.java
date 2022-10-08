@@ -30,6 +30,7 @@ public class BoardDAO3 {
       //mybatis.commit();
    }
    public BoardVO selectOneBoard(BoardVO vo) {
+	   mybatis.update("BoardDAO.cntUpdate", vo); // 글 방문시 조회수를 올려주는 로직.
       return mybatis.selectOne("BoardDAO.selectOneBoard",vo);
    }
    public List<BoardVO> selectAllBoard(BoardVO vo) {

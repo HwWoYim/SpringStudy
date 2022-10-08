@@ -7,10 +7,10 @@ public class BoardVO {
 	private String title; // 제목
 	private String writer; // 작성자
 	private String content; // 내용
-	private int cnt;
+	private int cnt; // 조회수
 	private String regdate; // 글이 데이터베이스 들어온 시간(작성된 시간)
-	private String searchCondition;
-	private String searchContent;
+	private String searchCondition; // 어떤 검색조건을 선택할 것인지	
+	private String searchContent; // 검색조건을 골랐다면 어떤 내용을 검색할 것이지.
 	private MultipartFile uploadFile; // springframework에서 제공하는 MultipartFile
 	private String fileName; // 저장된 파일이름
 	public int getBid() {
